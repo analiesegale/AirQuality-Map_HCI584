@@ -1,8 +1,7 @@
-# air_quality.py
 import requests
 from dotenv import load_dotenv
 import os
-from map_display import show_map, hide_map
+from map_display import MapDisplay
 
 load_dotenv()
 
@@ -38,7 +37,7 @@ def get_air_quality(latitude, longitude):
         print(e)
         return None
 
-def update_air_quality(address_entry, map_canvas, air_quality_label):
+def update_air_quality(address_entry, map_display, air_quality_label):
     city = address_entry.get()
     try:
         latitude, longitude = get_coordinates_from_city(city)
@@ -48,14 +47,13 @@ def update_air_quality(address_entry, map_canvas, air_quality_label):
 
             if air_quality_value is not None:
                 air_quality_label.config(text=f'Air Quality Index: {air_quality_value}')
-                show_map(latitude, longitude, map_canvas)
+                map_display.show_map(latitude, longitude)
             else:
                 air_quality_label.config(text="Failed to retrieve air quality data.")
-                hide_map(map_canvas)
+                map_display.hide_map()
         else:
             air_quality_label.config(text="Failed to retrieve coordinates for the given city.")
-            hide_map(map_canvas)
+            map_display.hide_map()
     except ValueError:
         air_quality_label.config(text="Invalid input. Please enter a valid city.")
-        hide_map(map_canvas)
-
+        map_display.hide_map()
