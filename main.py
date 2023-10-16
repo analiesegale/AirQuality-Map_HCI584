@@ -1,3 +1,4 @@
+# main.py
 import tkinter as tk
 from air_quality import update_air_quality
 from map_display import MapDisplay
