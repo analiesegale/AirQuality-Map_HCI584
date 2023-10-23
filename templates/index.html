@@ -1,7 +1,9 @@
+<!-- templates/index.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Air Quality Checker</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap" async defer></script>
 </head>
 <body>
     <h1>Air Quality Checker</h1>
@@ -11,13 +13,8 @@
         <input type="submit" value="Check Air Quality">
     </form>
 
-    <!-- JavaScript to retrieve and set the last entered city from local storage -->
-    <script>
-        const lastEnteredCity = localStorage.getItem('lastEnteredCity');
-        if (lastEnteredCity) {
-            document.getElementById('city').value = lastEnteredCity;
-        }
-    </script>
+    <!-- Display the last entered city and set it as the input field value -->
+    {{ last_entered_city | safe }}
 
     <!-- Display the air quality result here -->
     <div id="air_quality_result">
@@ -25,5 +22,29 @@
             <p>{{ air_quality }}</p>
         {% endif %}
     </div>
+
+    <!-- Add a div for displaying the map -->
+    <div id="map" style="height: 400px;"></div>
+
+    <!-- JavaScript to set up the map -->
+    <script>
+        function initMap() {
+            const lastEnteredCity = '{{ last_entered_city }}';
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 0, lng: 0 },  // Default center if no city is entered
+                zoom: 10,  // Adjust the initial zoom level
+            });
+
+            // Use a geocoding service to get the coordinates for the last entered city
+            if (lastEnteredCity) {
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ address: lastEnteredCity }, function (results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        map.setCenter(results[0].geometry.location);
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>

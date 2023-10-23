@@ -1,3 +1,4 @@
+# app.py
 from flask import Flask, render_template, request, make_response
 import requests
 from dotenv import load_dotenv
@@ -8,6 +9,9 @@ load_dotenv()
 
 app = Flask(__name__)
 
+# Load the Google Maps API key from the .env file
+GOOGLE_MAPS_API_KEY = os.environ.get("GOOGLE_MAPS_API_KEY")
+
 # OpenAQ API endpoint (v2)
 OPENAQ_API_URL = "https://api.openaq.org/v2/measurements"
 
@@ -17,17 +21,15 @@ OPENAQ_API_KEY = os.environ.get("OPENAQ_API_KEY")
 @app.route('/')
 def index():
     last_entered_city = request.cookies.get('lastEnteredCity', '')
-    air_quality = ''
-    if last_entered_city:
-        air_quality, _ = get_air_quality_data(last_entered_city)
-    return render_template('index.html', air_quality=air_quality, last_entered_city=last_entered_city)
+    return render_template('index.html', air_quality=None, last_entered_city=last_entered_city, google_maps_api_key=GOOGLE_MAPS_API_KEY)
 
 @app.route('/air_quality', methods=['POST'])
 def get_air_quality():
     city = request.form.get('city')
 
     if not city:
-        return render_template('index.html', air_quality="Please provide a city.", last_entered_city='')
+        last_entered_city = request.cookies.get('lastEnteredCity', '')  # Retrieve last entered city
+        return render_template('index.html', air_quality="Please provide a city.", last_entered_city=last_entered_city)
 
     air_quality, last_entered_city = get_air_quality_data(city)
 
