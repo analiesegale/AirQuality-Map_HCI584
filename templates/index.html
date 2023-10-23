@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Air Quality Checker</title>
+</head>
+<body>
+    <h1>Air Quality Checker</h1>
+    <form method="POST" action="/air_quality">
+        <label for="city">Enter a city:</label>
+        <input type="text" id="city" name="city" required>
+        <input type="submit" value="Check Air Quality">
+    </form>
+
+    <!-- JavaScript to retrieve and set the last entered city from local storage -->
+    <script>
+        const lastEnteredCity = localStorage.getItem('lastEnteredCity');
+        if (lastEnteredCity) {
+            document.getElementById('city').value = lastEnteredCity;
+        }
+    </script>
+
+    <!-- Display the air quality result here -->
+    <div id="air_quality_result">
+        {% if air_quality %}
+            <p>{{ air_quality }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
