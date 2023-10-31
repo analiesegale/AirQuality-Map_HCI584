@@ -1,4 +1,3 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +19,8 @@
     <div id="air_quality_result">
         {% if air_quality %}
             <p>{{ air_quality }}</p>
+            <p style="color: {{ color }};">{{ health_impact }}</p>
+            <p>{{ caution }}</p>
         {% endif %}
     </div>
 
