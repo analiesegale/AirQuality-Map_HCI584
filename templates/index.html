@@ -8,38 +8,57 @@
 <body class="bg-light">
     <div class="container">
         <h1 class="mt-5">Air Quality Checker</h1>
-        <form method="post" action="/get_air_quality" class="mt-4">
-            <div class="form-group">
-                <label for="city">City:</label>
-                <input type="text" class="form-control" name="city" id="city" required>
+        <div class="row mt-4">
+            <!-- Left Column: Air Quality Input Form -->
+            <div class="col-md-6">
+                <form method="post" action="/get_air_quality">
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <input type="text" class="form-control" name="city" id="city" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State:</label>
+                        <input type="text" class="form-control" name="state" id="state" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country:</label>
+                        <input type="text" class="form-control" name="country" id="country" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Check Air Quality</button>
+                </form>
+
+                {% if aqi %}
+                <div class="mt-4">
+                    <p>Air Quality Index (AQI): {{ aqi }}</p>
+                    <p>Main Pollutant: {{ main_pollutant }}</p>
+                </div>
+                {% endif %}
+
+                {% if error_message %}
+                <div class="alert alert-danger mt-4">
+                    <p>{{ error_message }}</p>
+                </div>
+                {% endif %}
             </div>
 
-            <div class="form-group">
-                <label for="state">State:</label>
-                <input type="text" class="form-control" name="state" id="state" required>
+            <!-- Right Column: Google Map -->
+            <div class="col-md-6">
+                <!-- Embed a Google Map using the Google Maps Embed API -->
+                <iframe
+                width="100%"
+                height="400"
+                frameborder="0"
+                style="border:0"
+                src="{{ google_map_url }}"
+                allowfullscreen>
+            </iframe>
             </div>
-
-            <div class="form-group">
-                <label for="country">Country:</label>
-                <input type="text" class="form-control" name="country" id="country" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Check Air Quality</button>
-        </form>
-
-        {% if aqi %}
-        <div class="mt-4">
-            <p>Air Quality Index (AQI): {{ aqi }}</p>
-            <p>Main Pollutant: {{ main_pollutant }}</p>
         </div>
-        {% endif %}
-
-        {% if error_message %}
-        <div class="alert alert-danger mt-4">
-            <p>{{ error_message }}</p>
-        </div>
-        {% endif %}
     </div>
+    
     <!-- Add the Bootstrap JS and jQuery links (optional) -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
