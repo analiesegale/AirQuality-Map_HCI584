@@ -2,50 +2,46 @@
 <html>
 <head>
     <title>Air Quality Checker</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap" async defer></script>
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>Air Quality Checker</h1>
-    <form method="POST" action="/air_quality">
-        <label for="city">Enter a city:</label>
-        <input type="text" id="city" name="city" required>
-        <input type="submit" value="Check Air Quality">
-    </form>
+<body class="bg-light">
+    <div class="container">
+        <h1 class="mt-5">Air Quality Checker</h1>
+        <form method="post" action="/get_air_quality" class="mt-4">
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" class="form-control" name="city" id="city" required>
+            </div>
 
-    <!-- Display the last entered city and set it as the input field value -->
-    {{ last_entered_city | safe }}
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="text" class="form-control" name="state" id="state" required>
+            </div>
 
-    <!-- Display the air quality result here -->
-    <div id="air_quality_result">
-        {% if air_quality %}
-            <p>{{ air_quality }}</p>
-            <p style="color: {{ color }};">{{ health_impact }}</p>
-            <p>{{ caution }}</p>
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <input type="text" class="form-control" name="country" id="country" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Check Air Quality</button>
+        </form>
+
+        {% if aqi %}
+        <div class="mt-4">
+            <p>Air Quality Index (AQI): {{ aqi }}</p>
+            <p>Main Pollutant: {{ main_pollutant }}</p>
+        </div>
+        {% endif %}
+
+        {% if error_message %}
+        <div class="alert alert-danger mt-4">
+            <p>{{ error_message }}</p>
+        </div>
         {% endif %}
     </div>
-
-    <!-- Add a div for displaying the map -->
-    <div id="map" style="height: 400px;"></div>
-
-    <!-- JavaScript to set up the map -->
-    <script>
-        function initMap() {
-            const lastEnteredCity = '{{ last_entered_city }}';
-            const map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 0, lng: 0 },  // Default center if no city is entered
-                zoom: 10,  // Adjust the initial zoom level
-            });
-
-            // Use a geocoding service to get the coordinates for the last entered city
-            if (lastEnteredCity) {
-                const geocoder = new google.maps.Geocoder();
-                geocoder.geocode({ address: lastEnteredCity }, function (results, status) {
-                    if (status === google.maps.GeocoderStatus.OK) {
-                        map.setCenter(results[0].geometry.location);
-                    }
-                });
-            }
-        }
-    </script>
+    <!-- Add the Bootstrap JS and jQuery links (optional) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
