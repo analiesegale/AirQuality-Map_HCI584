@@ -29,7 +29,7 @@ def get_air_quality():
 
     if response.status_code == 200:
         air_quality = data['data']['current']['pollution']
-        aqi = air_quality['aqius']
+        aqi = air_quality['aqius']   
         main_pollutant = air_quality['mainus']
 
         # Embed Google Map with the provided location

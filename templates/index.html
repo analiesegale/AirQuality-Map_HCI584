@@ -32,7 +32,24 @@
 
                 {% if aqi %}
                 <div class="mt-4">
-                    <p>Air Quality Index (AQI): {{ aqi }}</p>
+                    {% if aqi <= 50 %}
+                        {% set text_color = 'Green' %}
+                        <p> Health Implications: Air quality is considered satifactory, and air pollution poses little or no risk.</p>
+                        <p> Cautionary Statement: None</p>
+                    {% elif aqi <= 100 %}
+                        {% set text_color = 'Yellow' %}
+                        <p> Health Implications: Air quality is acceptable. However, there may be a risk for some people, particularly those who are unusually sensitive to air pollution.</p>
+                        <p> Cautionary Statement: Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.</p>
+                    {% elif aqi <= 150 %}
+                        {% set text_color = 'Orange' %}
+                        <p> Health Implications: Members of sensitive groups may experience health effects. The general public is less likely to be affected.</p>
+                        <p> Cautionary Statement: Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.</p>
+                    {% else %}
+                        {% set text_color = 'Red' %}
+                        <p> Health Implications: Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.</p>
+                        <p> Cautionary Statement: Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion</p>
+                    {% endif %}
+                    <p style="color: {{ text_color }}">Air Quality Index (AQI): {{ aqi }}</p>
                     <p>Main Pollutant: {{ main_pollutant }}</p>
                 </div>
                 {% endif %}
