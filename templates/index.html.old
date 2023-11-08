@@ -76,12 +76,17 @@
                 {% endif %}
             </div>
 
-            
-
-            <!-- Right Column: Folium Map -->
+            <!-- Right Column: Google Map -->
             <div class="col-md-6">
-                <!-- Embed a Folium map -->
-                {{ map|safe }} <!-- safe is needed to get around the browser police :) -->
+                <!-- Embed a Google Map using the Google Maps Embed API -->
+                <iframe
+                width="100%"
+                height="400"
+                frameborder="0"
+                style="border:0"
+                src="{{ google_map_url }}"
+                allowfullscreen>
+            </iframe>
             </div>
         </div>
     </div>
