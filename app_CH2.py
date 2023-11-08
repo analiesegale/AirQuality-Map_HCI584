@@ -9,9 +9,8 @@ app = Flask(__name__)
 # Load environment variables from .env file
 load_dotenv()
 
-# Access the API keys from the environment variables
-AIRVISUAL_API_KEY = "cdc1ea56-31c8-41bf-a642-79e0d92fb4d9" 
-#os.getenv("AIRVISUAL_API_KEY")
+# Access the API keys from the environment variables 
+os.getenv("AIRVISUAL_API_KEY")
 
 # get all valid countries, states, cities
 def get_countries():
