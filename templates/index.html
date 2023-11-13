@@ -30,8 +30,10 @@
                     <button type="submit" class="btn btn-primary">Check Air Quality</button>
                 </form>
 
+
                 {% if aqi %}
                 <div class="mt-4">
+                    <p> Currently showing information for: {{ City }}, {{ State }}, {{ Country }}</p>
                     {% if aqi <= 50 %}
                         {% set text_color = 'Green' %}
                         <p> Health Implications: Air quality is considered satifactory, and air pollution poses little or no risk.</p>

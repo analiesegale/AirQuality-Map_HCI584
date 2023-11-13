@@ -114,7 +114,7 @@ def get_air_quality():
 
         # convert to html, so we can embed it
         map_html = folium_map._repr_html_()
-        return render_template('index.html', aqi=aqi, main_pollutant=main_pollutant, map=map_html)
+        return render_template('index.html', aqi=aqi, main_pollutant=main_pollutant, map=map_html, City=city, State=state, Country=country)
     else:
         error_message = "Error: Unable to retrieve air quality data."
         return render_template('index.html', error_message=error_message)
