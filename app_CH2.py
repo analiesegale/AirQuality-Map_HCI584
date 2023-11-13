@@ -64,6 +64,20 @@ def geocode_place(place_name): # Ex. Ames, IA  or Berlin, Germany
 def index():
     return render_template('index.html')
 
+def icon_colors(aqi):
+    if aqi <= 50:
+        return 'green'
+    elif aqi <= 100:
+        return 'yellow'
+    elif aqi <= 150:
+        return 'orange'
+    elif aqi <= 200:
+        return 'red'
+    elif aqi <= 300:
+        return 'purple'
+    else:
+        return 'maroon'
+
 @app.route('/get_air_quality', methods=['POST'])
 def get_air_quality():
     city = request.form.get('city').strip() # use strip() to remove leading/trailing whitespace
@@ -83,20 +97,20 @@ def get_air_quality():
     if response.status_code == 200:
         data = response.json()
         air_quality = data['data']['current']['pollution']
-        aqi = air_quality['aqius']   
+        aqi = int(air_quality['aqius'])
         main_pollutant = air_quality['mainus']
 
         # make a folium map with a marker at the lat/lon coordinates
         folium_map = folium.Map(location=[lat, lon], zoom_start=10)
 
         # optional: add a pop-up text and tool tip
-        html = '<h1>This the location</h1>' # change this to you liking
+        html = '<h1>Current location</h1>' # change this to you liking
         popup = folium.Popup(html, max_width=300)
         tooltip = f"{aqi} AQI for {main_pollutant}"
 
         # add a marker for user location (maybe change icon to something more polluty?
         # Also, you should change the color of the marker based on the AQI value
-        folium.Marker([lat, lon], popup=popup, tooltip=tooltip, icon=folium.Icon(color='purple')).add_to(folium_map)
+        folium.Marker([lat, lon], popup=popup, tooltip=tooltip, icon=folium.Icon(color=icon_colors(aqi))).add_to(folium_map)
 
         # convert to html, so we can embed it
         map_html = folium_map._repr_html_()
