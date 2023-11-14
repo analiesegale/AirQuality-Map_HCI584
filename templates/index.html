@@ -52,24 +52,49 @@
                         <p> Cautionary Statement: Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion</p>
                     {% endif %}
                     <p style="color: {{ text_color }}">Air Quality Index (AQI): {{ aqi }}</p>
-                    <p>Main Pollutant: {{ main_pollutant }}</p>
-                        {% if main_pollutant == 'p2' %}
-                            <p>PM2.5 are tiny particles in the air which reduce visibility and cause the air to appear hazy when levels are elevated. Outdoor PM2.5 levels are most likely to be elevated on days with little or no wind or air mixing.</p>
-                        {% elif main_pollutant == 'p10' %}
-                            <p>PM10 are inhalable particles, with diameters that are generally 10 micrometers and smaller. These particles include dust, pollen and mold spores.</p>
-                        {% elif main_pollutant == 'o3' %}
-                            <p>Ozone (O3) is a gas composed of three oxygen atoms. Ozone occurs both in the Earth's upper atmosphere and at ground level. Ozone can be good or bad, depending on where it is found.</p>
-                        {% elif main_pollutant == 'no2' %}
-                            <p>Nitrogen dioxide (NO2) is one of a group of highly reactive gases known as oxides of nitrogen or nitrogen oxides (NOx). Other nitrogen oxides include nitrous acid and nitric acid.</p>
-                        {% elif main_pollutant == 'so2' %}
-                            <p>Sulfur dioxide (SO2) is one of a group of highly reactive gases known as sulfur oxides (SOx). Other gases in the group include sulfur trioxide (SO3) and sulfates (SO4).</p>
-                        {% elif main_pollutant == 'c0' %}
-                            <p>Carbon monoxide (CO) is a colorless, odorless, and toxic gas, which is predominantly produced by incomplete combustion of carbon-containing materials.</p>
-                        {% elif main_pollutant == 'nh3' %}
-                            <p>Ammonia (NH3) is one of the most important basic chemicals. It is used in the production of fertilizers, explosives, and polymers.</p>
-                        {% endif %}
                 </div>
                 {% endif %}
+
+                {% if main_pollutant %}
+                    <div class="mt-4">
+                        <p>Main Pollutant: <button class="btn btn-link" data-toggle="modal" data-target="#pollutantModal">{{ main_pollutant }}</button></p>
+                    </div>
+
+                    <!-- Modal for displaying additional pollutant information -->
+                    <div class="modal fade" id="pollutantModal" tabindex="-1" role="dialog" aria-labelledby="pollutantModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="pollutantModalLabel">{{ main_pollutant }} Information</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {% if main_pollutant == 'p2' %}
+                                        <p>PM2.5 are tiny particles in the air which reduce visibility and cause the air to appear hazy when levels are elevated. Outdoor PM2.5 levels are most likely to be elevated on days with little or no wind or air mixing.</p>
+                                    {% elif main_pollutant == 'p10' %}
+                                        <p>PM10 are inhalable particles, with diameters that are generally 10 micrometers and smaller. These particles include dust, pollen and mold spores.</p>
+                                    {% elif main_pollutant == 'o3' %}
+                                        <p>Ozone (O3) is a gas composed of three oxygen atoms. Ozone occurs both in the Earth's upper atmosphere and at ground level. Ozone can be good or bad, depending on where it is found.</p>
+                                    {% elif main_pollutant == 'no2' %}
+                                        <p>Nitrogen dioxide (NO2) is one of a group of highly reactive gases known as oxides of nitrogen or nitrogen oxides (NOx). Other nitrogen oxides include nitrous acid and nitric acid.</p>
+                                    {% elif main_pollutant == 'so2' %}
+                                        <p>Sulfur dioxide (SO2) is one of a group of highly reactive gases known as sulfur oxides (SOx). Other gases in the group include sulfur trioxide (SO3) and sulfates (SO4).</p>
+                                    {% elif main_pollutant == 'c0' %}
+                                        <p>Carbon monoxide (CO) is a colorless, odorless, and toxic gas, which is predominantly produced by incomplete combustion of carbon-containing materials.</p>
+                                    {% elif main_pollutant == 'nh3' %}
+                                        <p>Ammonia (NH3) is one of the most important basic chemicals. It is used in the production of fertilizers, explosives, and polymers.</p>
+                                    {% endif %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
 
                 {% if error_message %}
                 <div class="alert alert-danger mt-4">
