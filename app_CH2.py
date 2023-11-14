@@ -71,12 +71,8 @@ def icon_colors(aqi):
         return 'yellow'
     elif aqi <= 150:
         return 'orange'
-    elif aqi <= 200:
-        return 'red'
-    elif aqi <= 300:
-        return 'purple'
     else:
-        return 'maroon'
+        return 'red'
 
 @app.route('/get_air_quality', methods=['POST'])
 def get_air_quality():
