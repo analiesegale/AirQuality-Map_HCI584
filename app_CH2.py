@@ -79,6 +79,11 @@ def get_air_quality():
     city = request.form.get('city').strip() # use strip() to remove leading/trailing whitespace
     state = request.form.get('state').strip()
     country = request.form.get('country').strip()
+    
+    place_name = f"{city}, {state}, {country}"
+    lat, lon, location = geocode_place(place_name)
+    
+    airvisual_endpoint = f"http://api.airvisual.com/v2/nearest_city?lat={lat}&lon={lon}&key={AIRVISUAL_API_KEY}"
 
     # combine city, state, country into a single string and get its lat/long
     place_name = f"{city}, {state}, {country}"
@@ -95,7 +100,15 @@ def get_air_quality():
         air_quality = data['data']['current']['pollution']
         aqi = int(air_quality['aqius'])
         main_pollutant = air_quality['mainus']
-
+        
+        # fetch additional data from the API
+        data = response.json()
+        weather_info = data['data']['current']['weather']
+        a_temperature = int(weather_info.get('tp', 'N/A'))
+        a_humidity = int(weather_info.get('hu', 'N/A'))
+        a_wind_speed = int(weather_info.get('ws','N/A'))
+        a_wind_direction = int(weather_info.get('wd','N/A'))
+        
         # make a folium map with a marker at the lat/lon coordinates
         folium_map = folium.Map(location=[lat, lon], zoom_start=10)
 
@@ -110,7 +123,7 @@ def get_air_quality():
 
         # convert to html, so we can embed it
         map_html = folium_map._repr_html_()
-        return render_template('index.html', aqi=aqi, main_pollutant=main_pollutant, map=map_html, City=city, State=state, Country=country)
+        return render_template('index.html', aqi=aqi, main_pollutant=main_pollutant, map=map_html, City=city, State=state, Country=country, a_temperature=a_temperature, a_humidity=a_humidity, a_wind_speed=a_wind_speed, a_wind_direction=a_wind_direction)
     else:
         error_message = "Error: Unable to retrieve air quality data."
         return render_template('index.html', error_message=error_message)
