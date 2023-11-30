@@ -1,0 +1,13 @@
+Requirements
+- Python 3 along with Pip3
+- these python packages: 
+    - flask
+    - requests
+    - python-dotenv
+    - folium
+
+Setup a .env file that contains a key from the website below.
+https://www.iqair.com/us/air-pollution-data-api
+with the following format:
+
+AIRVISUAL_API_KEY= Your key
