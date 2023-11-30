@@ -117,8 +117,7 @@ def get_air_quality():
         popup = folium.Popup(html, max_width=300)
         tooltip = f"{aqi} AQI for {main_pollutant}"
 
-        # add a marker for user location (maybe change icon to something more polluty?
-        # Also, you should change the color of the marker based on the AQI value
+        # add a marker for user location
         folium.Marker([lat, lon], popup=popup, tooltip=tooltip, icon=folium.Icon(color=icon_colors(aqi))).add_to(folium_map)
 
         # convert to html, so we can embed it
