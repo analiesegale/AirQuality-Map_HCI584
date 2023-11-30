@@ -112,7 +112,7 @@ def get_air_quality():
         # make a folium map with a marker at the lat/lon coordinates
         folium_map = folium.Map(location=[lat, lon], zoom_start=10)
 
-        # optional: add a pop-up text and tool tip
+        # add a pop-up text and tool tip
         html = '<h1>Current location</h1>:' + f'<p>{location}</p>'
         popup = folium.Popup(html, max_width=300)
         tooltip = f"{aqi} AQI for {main_pollutant}"
