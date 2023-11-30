@@ -38,7 +38,7 @@ def get_cities_for_state(state, country):
     return cities_lst
 
 def geocode_place(place_name): # Ex. Ames, IA  or Berlin, Germany
-    # free geocoding service, w/o need for API key!
+    # free geocoding service
     base_url = "https://geocode.maps.co/search"  
     params = {"q": place_name}
     
@@ -113,7 +113,7 @@ def get_air_quality():
         folium_map = folium.Map(location=[lat, lon], zoom_start=10)
 
         # optional: add a pop-up text and tool tip
-        html = '<h1>Current location</h1>' # change this to you liking
+        html = '<h1>Current location</h1>:' + f'<p>{location}</p>'
         popup = folium.Popup(html, max_width=300)
         tooltip = f"{aqi} AQI for {main_pollutant}"
 
