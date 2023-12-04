@@ -25,7 +25,7 @@ How to use the project:
   
 - Click on the location on the map:
     <img width="392" alt="Screenshot 2023-12-04 at 2 30 41 PM" src="https://github.com/analiesegale/AirQuality-Map_HCI584/assets/143448937/77b418d6-c7e1-43a4-bc15-51a4cb7a37e3">
-    Click on the icon ob the map to see details about the location. You are able to scroll in or out and move around.
+    Click on the icon on the map to see details about the location. You are able to scroll in or out and move around.
   
 - Click "More Weather Info":
     <img width="749" alt="Screenshot 2023-12-04 at 2 30 54 PM" src="https://github.com/analiesegale/AirQuality-Map_HCI584/assets/143448937/50ba79b9-4045-4da8-84a3-c1c1ed29f373">
