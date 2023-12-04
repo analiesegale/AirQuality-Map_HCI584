@@ -1,4 +1,4 @@
-# Gale_Project
+<img width="749" alt="Screenshot 2023-12-04 at 2 30 54 PM" src="https://github.com/analiesegale/AirQuality-Map_HCI584/assets/143448937/f51e3f90-6e9e-4075-9626-a224a2eb4f08"># Gale_Project
 
 USER'S GUIDE
 
@@ -17,24 +17,30 @@ Set up before starting:
 
 How to use the project:
 - Blank project screen:
-    ![Open Screen](OpenScreen.png)
+    <img width="497" alt="Screenshot 2023-12-04 at 2 30 15 PM" src="https://github.com/analiesegale/AirQuality-Map_HCI584/assets/143448937/6929dd7b-ac96-4101-9bab-eb88d8223282">
+
 - Enter location: 
-    ![Enter Location](EnterLocation1.png)
+    <img width="784" alt="Screenshot 2023-12-04 at 2 30 34 PM" src="https://github.com/analiesegale/AirQuality-Map_HCI584/assets/143448937/51d216b0-3585-4f4e-8571-aed2c3fe0a53">
     After you enter your chosen location, the following information will appear.
+  
 - Click on the location on the map:
-    ![Map](Map.png)
-    Click on the icon ob the map to see details about the location. You are able to scroll in or out and move around. 
+    <img width="392" alt="Screenshot 2023-12-04 at 2 30 41 PM" src="https://github.com/analiesegale/AirQuality-Map_HCI584/assets/143448937/77b418d6-c7e1-43a4-bc15-51a4cb7a37e3">
+    Click on the icon ob the map to see details about the location. You are able to scroll in or out and move around.
+  
 - Click "More Weather Info":
-    ![Weather Info](WeatherInfo.png)
+    <img width="749" alt="Screenshot 2023-12-04 at 2 30 54 PM" src="https://github.com/analiesegale/AirQuality-Map_HCI584/assets/143448937/50ba79b9-4045-4da8-84a3-c1c1ed29f373">
     Click on the "More Weather Info" link to show additional info about the weather in the area.
+  
 - Click on the pollutant:
-    ![Pollutant](Pollutant.png)
+    <img width="749" alt="Screenshot 2023-12-04 at 2 31 01 PM" src="https://github.com/analiesegale/AirQuality-Map_HCI584/assets/143448937/0c06ccd5-340d-4f12-b8bc-38b8ac7c88db">
     Click on the pollutant to find additional info about it.
+  
 - Scroll down to find more info about AQI:
-    ![AQI Info](AQIInfo.png)
+    <img width="424" alt="Screenshot 2023-12-04 at 2 31 10 PM" src="https://github.com/analiesegale/AirQuality-Map_HCI584/assets/143448937/9c040ca4-e67b-471f-9271-3f560d585562">
     Scroll down on the screen to answer any questions you might have about what AQI is.
+  
 - Enter a new location:
-    ![New Location](EnterLocation2.png)
+    <img width="769" alt="Screenshot 2023-12-04 at 2 31 35 PM" src="https://github.com/analiesegale/AirQuality-Map_HCI584/assets/143448937/18255f5b-6270-400c-b64d-336416afaa0b">
     Play around a bit and try some new locations.
 
 Any errors you might encounter:
