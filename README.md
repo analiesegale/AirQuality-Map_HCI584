@@ -1,4 +1,4 @@
-<img width="749" alt="Screenshot 2023-12-04 at 2 30 54 PM" src="https://github.com/analiesegale/AirQuality-Map_HCI584/assets/143448937/f51e3f90-6e9e-4075-9626-a224a2eb4f08"># Gale_Project
+# Gale_Project
 
 USER'S GUIDE
 
