@@ -16,7 +16,7 @@ This project shows the user air quality information about a specific location. T
     - Diagrams of air quality over time (was not able to find an API to faciliate this)
 
 Installment/deployement:
-  No additional installments required other than what is in the User's Guide
+  - No additional installments required other than what is in the User's Guide
 
 User interaction/flow (images found in User's Guide):
   - User opens up application, blank screen showing title, "Air Quality Checker", and input areas for city, state, and country, and then a button that says "Check Air Quality". There is also additional AQI information on the page
