@@ -1,16 +1,20 @@
 Overview:
+
   My application pulls information about the air quality and other weather information for a chosen location. 
   This allows an easy way for users to visualize air quality information for a specific location.
   The application is powered by an API from AQICN to bring in data about current air qualities. Other weather info is pulled from the same API.
   Folium is used to create the map affiliated with the given air quality.
 
 Final planning specs:
+
 This project shows the user air quality information about a specific location. The idea is to allow an easy way for users to visualize air quality. This project will be a web application. This will be achieved by using a visual map that allows users to see a location and it's air quality. The location consists of latitude and longitude, and the map is based off of the user’s inputted location. Users are also able to view information about the air quality of a specific area and any cautionary statements. 
+
   Aspects included from my final planning specs:
     - Ability to grab inputted location from user
     - Ability to grab AQI and other info from API
     - Ability to visualize air quality on a map
     - Interactive map
+    
   Aspects not included from my final planning specs:
     - Filtering abilites for different air qualities
     - Diagrams of air quality over time (was not able to find an API to faciliate this)
